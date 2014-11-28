@@ -20,7 +20,7 @@ import java.util.Random;
  */
 
 public class Game {
-	private Room tabRooms[];
+	private Room tabRooms[] = new Room[6];
     private Parser parser;
     private Room currentRoom;
 
@@ -39,12 +39,12 @@ public class Game {
         Room classroom, lecture, lab, exam, library, lunchroom;
 
         // create the rooms
-        classroom = new Room("");
-        lecture = new Room("");
-        lab = new Room("");
-        exam = new Room("");
-        library = new Room("");
-        lunchroom = new Room("");
+        classroom = new Room("in a classroom of ");
+        lecture = new Room("in a lecture of ");
+        lab = new Room("in a lab of ");
+        exam = new Room("in an exam room of ");
+        library = new Room("in the library");
+        lunchroom = new Room("in the lunchroom");
         
         // initialise room exits
         classroom.setExit("east", lecture);
@@ -80,8 +80,13 @@ public class Game {
     {
     	String matieres[] = {"english", "OOP", "maths", "physic"};
     	Random rand = new Random();
+    	int numMatiere;
     	
-    	
+    	for (int i = 0; i < 4; i++)
+    	{
+    		numMatiere = rand.nextInt(4);
+    		tabRooms[i].addSubject(matieres[numMatiere]);
+    	}
     }
 
     /**
@@ -96,6 +101,7 @@ public class Game {
         boolean finished = false;
         while (!finished) {
             Command command = parser.getCommand();
+            refreshRooms();
             finished = processCommand(command);
         }
         System.out.println("Thank you for playing.  Good bye.");

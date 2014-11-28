@@ -19,6 +19,7 @@ import java.util.HashMap;
 
 public class Room {
     private String description;
+    private String subject;
     private HashMap<String, Room> exits; // stores exits of this room.
 
     /**
@@ -30,7 +31,13 @@ public class Room {
      */
     public Room(String description) {
         this.description = description;
+        this.subject = "";
         exits = new HashMap<>();
+    }
+    
+    public void addSubject(String subject)
+    {
+    	this.subject = subject;
     }
     
     /**
@@ -60,7 +67,7 @@ public class Room {
      * @return A long description of this room
      */
     public String getLongDescription() {
-        return "You are " + description + ".\n" + getExitString();
+        return "You are " + description + subject + ".\n" + getExitString();
     }
 
     /**
