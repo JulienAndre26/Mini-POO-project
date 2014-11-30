@@ -30,9 +30,15 @@ public class Player
 		this.inventory.add(item);
 	}
 	
-	public void addCourse(String topic, String subject)
+	public Boolean addCourse(String topic, String subject)
 	{
-		this.learnedCourses.put(new Course(topic, subject), false);
+		if (this.energyLvl > 0)
+		{
+			this.learnedCourses.put(new Course(topic, subject), false);
+			this.energyLvl--;
+			return true;
+		}
+		return false;
 	}
 	
 	public void addLab(Course c)
