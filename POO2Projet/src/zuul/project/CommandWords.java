@@ -13,9 +13,7 @@ package zuul.project;
 
 public class CommandWords {
 	// a constant array that holds all valid command words
-	private static final String[] validCommands = {
-			"go", "quit", "help", "look", "eat", "inventory"
-	};
+	private static final String[] validCommands = {"go", "quit", "help", "look", "inventory", "courses"};
 
 	/**
 	 * Constructor - initialise the command words.

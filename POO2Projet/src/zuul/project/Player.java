@@ -44,4 +44,14 @@ public class Player
 	{
 		return this.learnedCourses;
 	}
+	
+	public Boolean hasCourse(String subject)
+	{
+		return this.learnedCourses.containsKey(subject);
+	}
+	
+	public Boolean hasOopCourse(String topic)
+	{
+		return this.learnedCourses.containsValue(topic);
+	}
 }

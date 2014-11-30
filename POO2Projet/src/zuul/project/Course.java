@@ -10,4 +10,19 @@ public class Course
 		this.topic = topic;
 		this.subject = subject;
 	}
+	
+	public String getSubject()
+	{
+		return this.subject;
+	}
+	
+	public String toString()
+	{
+		String result = topic;
+
+		if (topic != subject)
+			result += " and the subject is " + subject;
+		
+		return result;
+	}
 }

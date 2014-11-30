@@ -1,6 +1,8 @@
 package zuul.project;
 
+import java.util.Iterator;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * This class is the main class of the "World of Zuul" application.
@@ -24,6 +26,7 @@ public class Game {
     private Parser parser;
     private Player player;
     private Room currentRoom;
+    private Course oopCourses[] = new Course[4];
 
     /**
      * Create the game and initialise its internal map.
@@ -32,12 +35,34 @@ public class Game {
     {
     	createPlayer("BinSab");
         createRooms();
+        createCourses();
         parser = new Parser();
+    }
+    
+    private void printLearnedCourses()
+    {
+    	Set listKeys = player.getLearnedCourses().keySet();  // Obtenir la liste des clés
+		Iterator iterateur=listKeys.iterator();
+		
+		System.out.println("Here are all the courses you've learned :\n");
+		// Parcourir les clés et afficher les entrées de chaque clé;
+		while(iterateur.hasNext())
+		{
+			Course key= (Course) iterateur.next();
+			System.out.println ("Course of " + key.toString());
+			if (player.getLearnedCourses().get(key))
+				System.out.print(" and you've learned the lab associated");
+			else
+				System.out.print(" and you didn't learned the lab associated");
+		}
     }
     
     private void createCourses()
     {
-    	
+    	this.oopCourses[0] = new Course("Basics", "OOP");
+    	this.oopCourses[1] = new Course("Inheritance", "OOP");
+    	this.oopCourses[2] = new Course("Designing classes", "OOP");
+    	this.oopCourses[3] = new Course("Inheritance", "OOP");
     }
 
     private void createPlayer(String name)
@@ -100,6 +125,8 @@ public class Game {
     		tabRooms[i].addSubject(matieres[numMatiere]);
     	}
     }
+    
+    
 
     /**
      * Main play routine. Loops until end of play.
@@ -156,6 +183,9 @@ public class Game {
         else if (commandWord.equals("inventory")) {
             inventory();
         }
+        else if (commandWord.equals("courses")) {
+            printLearnedCourses();
+        }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
         }
@@ -206,14 +236,33 @@ public class Game {
             System.out.println("There is no door!");
         } else {
             currentRoom = nextRoom;
-            //checkCourse(r);
+            if (currentRoom.getShortDescription() == "in a classroom of ")
+            	checkCourse(currentRoom);
             System.out.println(currentRoom.getLongDescription());
         }
     }
     
     public void checkCourse(Room r)
     {
-    	 if (player.getLearnedCourses().  r.getSubject();
+    	Random rand = new Random();
+    	int numCourse;
+    	
+    	numCourse = rand.nextInt(4);
+    	if (r.getSubject() == "OOP")
+    	{
+    		if (!player.hasOopCourse(oopCourses[numCourse].getSubject()))
+			{
+    			player.addCourse(oopCourses[numCourse].getSubject(), r.getSubject());
+			}
+    	}
+    	else
+    	{
+    		if (!player.hasCourse(r.getSubject()))
+    		{
+    			player.addCourse(r.getSubject(), r.getSubject());
+    		}
+    	}
+    			 
     }
 
     /**
