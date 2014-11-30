@@ -7,6 +7,7 @@ public class Course
 	
 	public Course(String topic, String subject)
 	{
-		
+		this.topic = topic;
+		this.subject = subject;
 	}
 }

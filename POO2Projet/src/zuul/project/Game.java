@@ -22,16 +22,23 @@ import java.util.Random;
 public class Game {
 	private Room tabRooms[] = new Room[6];
     private Parser parser;
+    private Player player;
     private Room currentRoom;
 
     /**
      * Create the game and initialise its internal map.
      */
-    public Game() {
+    public Game()
+    {
+    	createPlayer("Ricardo");
         createRooms();
         parser = new Parser();
     }
 
+    private void createPlayer(String name)
+    {
+    	this.player = new Player(name);
+    }
     /**
      * Create all the rooms and link their exits together.
      */
@@ -140,7 +147,11 @@ public class Game {
             printHelp();
         } else if (commandWord.equals("go")) {
             goRoom(command);
-        } else if (commandWord.equals("quit")) {
+        }
+        else if (commandWord.equals("inventory")) {
+            inventory();
+        }
+        else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
         }
         // else command not recognised.
@@ -161,6 +172,13 @@ public class Game {
         parser.showCommands();
     }
 
+    private void inventory()
+    {
+    	for (int i = 0; i < player.getInventory().size(); i++)
+    	{
+    		System.out.println(player.getInventory().get(i));
+    	}
+    }
     /**
      * Try to in to one direction. If there is an exit, enter the new room,
      * otherwise print an error message.
