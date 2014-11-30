@@ -8,12 +8,13 @@ public class Player
 	private int energyLvl;
 	private String name;
 	private boolean cheatSheet;
-	private HashMap<String, String> learnedCourses;
+	private HashMap<Course, Boolean> learnedCourses;
 	private ArrayList<String> inventory;
 	
 	public Player(String name)
 	{
-		this.inventory.clear();
+		this.inventory = new ArrayList<String>();
+		this.learnedCourses = new HashMap<Course, Boolean>();
 		this.energyLvl = 3;
 		this.name = name;
 		cheatSheet = false;
@@ -24,5 +25,23 @@ public class Player
 		return this.inventory;
 	}
 	
-	//public void addCourse()
+	public void addItem(String item)
+	{
+		this.inventory.add(item);
+	}
+	
+	public void addCourse(String topic, String subject)
+	{
+		this.learnedCourses.put(new Course(topic, subject), false);
+	}
+	
+	public void addLab(Course c)
+	{
+		this.learnedCourses.put(c, true);
+	}
+	
+	public HashMap<Course, Boolean> getLearnedCourses()
+	{
+		return this.learnedCourses;
+	}
 }

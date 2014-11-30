@@ -30,9 +30,14 @@ public class Game {
      */
     public Game()
     {
-    	createPlayer("Ricardo");
+    	createPlayer("BinSab");
         createRooms();
         parser = new Parser();
+    }
+    
+    private void createCourses()
+    {
+    	
     }
 
     private void createPlayer(String name)
@@ -174,6 +179,8 @@ public class Game {
 
     private void inventory()
     {
+    	player.addItem("tablet");
+    	System.out.println("Here is the content of your inventory :\n");
     	for (int i = 0; i < player.getInventory().size(); i++)
     	{
     		System.out.println(player.getInventory().get(i));
@@ -199,8 +206,14 @@ public class Game {
             System.out.println("There is no door!");
         } else {
             currentRoom = nextRoom;
+            //checkCourse(r);
             System.out.println(currentRoom.getLongDescription());
         }
+    }
+    
+    public void checkCourse(Room r)
+    {
+    	 if (player.getLearnedCourses().  r.getSubject();
     }
 
     /**
