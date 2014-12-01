@@ -2,6 +2,9 @@ package zuul.project;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Random;
+import java.util.Set;
 
 public class Player
 {
@@ -59,5 +62,27 @@ public class Player
 	public Boolean hasOopCourse(String topic)
 	{
 		return this.learnedCourses.containsValue(topic);
+	}
+	
+	public Boolean forgetCourse()
+	{
+		Random rand = new Random();
+		Set listKeys = this.learnedCourses.keySet();
+		Iterator iterateur=listKeys.iterator();
+		
+		Course key = (Course) iterateur.next();
+		if (key != null)
+		{
+			return this.learnedCourses.remove(key);
+		}
+		
+		return false;
+	}
+	
+	public int drinkCoffee()
+	{
+		this.energyLvl++;
+		
+		return this.energyLvl;
 	}
 }

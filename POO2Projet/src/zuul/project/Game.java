@@ -192,6 +192,23 @@ public class Game {
         // else command not recognised.
         return wantToQuit;
     }
+    
+    public void lunchRoom()
+    {
+    	Random rand = new Random();
+    	int energyLvl;
+    	
+    	if (rand.nextInt(4) == 0)
+    	{
+    		if (player.forgetCourse())
+    			System.out.println("No luck, you played a babyfoot, you have forgotten a course");
+    		else
+    			System.out.println("You played a babyfoot but you've got no course to forget.");
+    	}
+    	energyLvl = player.drinkCoffee();
+    	System.out.println("You drank a coffee, your energy lvl is now : " + energyLvl);
+    	
+    }
 
     // implementations of user commands:
 
@@ -238,6 +255,8 @@ public class Game {
             currentRoom = nextRoom;
             if (currentRoom.getShortDescription() == "in a classroom of ")
             	checkCourse(currentRoom);
+            else if (currentRoom.getShortDescription() == "in the lunchroom")
+            		lunchRoom();
             System.out.println(currentRoom.getLongDescription());
         }
     }
