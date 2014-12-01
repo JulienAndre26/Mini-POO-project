@@ -51,9 +51,9 @@ public class Game {
 			Course key= (Course) iterateur.next();
 			System.out.println ("Course of " + key.toString());
 			if (player.getLearnedCourses().get(key))
-				System.out.print(" and you've learned the lab associated");
+				System.out.print(" and you've learned the lab associated\n");
 			else
-				System.out.print(" and you didn't learned the lab associated");
+				System.out.print(" and you didn't learned the lab associated\n");
 		}
     }
     
@@ -201,9 +201,9 @@ public class Game {
     	if (rand.nextInt(4) == 0)
     	{
     		if (player.forgetCourse())
-    			System.out.println("No luck, you played a babyfoot, you have forgotten a course");
+    			System.out.println("No luck, you played a babyfoot, you have forgotten a course.\n");
     		else
-    			System.out.println("You played a babyfoot but you've got no course to forget.");
+    			System.out.println("You played a babyfoot but you've got no course to forget.\n");
     	}
     	energyLvl = player.drinkCoffee();
     	System.out.println("You drank a coffee, your energy lvl is now : " + energyLvl);
